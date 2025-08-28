@@ -5,12 +5,12 @@ resource "tls_private_key" "key" {
 }
 # Create the Key Pair
 resource "aws_key_pair" "key1" {
-  key_name   = "terraform-key"  
+  key_name   = "terraform-key"
   public_key = tls_private_key.key.public_key_openssh
 }
 # Download the key localy 
 resource "local_file" "ssh_key" {
-  filename = "terraform-key.pem"
-  content  = tls_private_key.key.private_key_openssh
+  filename        = "terraform-key.pem"
+  content         = tls_private_key.key.private_key_openssh
   file_permission = 0400
 }
